@@ -1,48 +1,21 @@
 -- ==========================================================================
 -- ======================= PROCEDIMIENTOS ALMACENADOS =======================
 -- ==========================================================================
-SET ANSI_NULLS ON
+USE [Practica2]
 GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
-CREATE PROCEDURE <Procedure_Name, sysname, ProcedureName> 
-	-- Add the parameters for the stored procedure here
-	<@Param1, sysname, @p1> <Datatype_For_Param1, , int> = <Default_Value_For_Param1, , 0>, 
-	<@Param2, sysname, @p2> <Datatype_For_Param2, , int> = <Default_Value_For_Param2, , 0>
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-	SELECT <@Param1, sysname, @p1>, <@Param2, sysname, @p2>
-END
-GO
-
--- ============================================================================================================
 
 -- ========================================================
 -- ======================= VENDEDOR =======================
 -- ========================================================
 -- Insertar Vendedor
-CREATE PROCEDURE InsertarVendedor
-    -- Add the parameters for the stored procedure here
+CREATE PROCEDURE InsertarVendedor_SP
     @Cedula VARCHAR(50),
     @Nombre VARCHAR(100),
     @Correo VARCHAR(100),
     @Estado BIT = 1
 AS
 BEGIN
-    -- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
-    SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
+    SET NOCOUNT ON; -- Added to prevent extra result sets from interfering with SELECT statements.
     IF NOT EXISTS (SELECT 1 FROM Vendedores WHERE Cedula = @Cedula)
     BEGIN
         INSERT INTO Vendedores (Cedula, Nombre, Correo, Estado)
@@ -51,9 +24,8 @@ BEGIN
 END
 GO
 
--- Obtener Vendedor
-CREATE PROCEDURE ConsultarVendedores
-    -- No parameters required
+-- Consultar Vendedores
+CREATE PROCEDURE ConsultarVendedores_SP
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -62,13 +34,41 @@ BEGIN
 END
 GO
 
+-- Consultar por Cedula
+CREATE PROCEDURE ObtenerVendedorPorCedula_SP
+    @Cedula VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT IdVendedor FROM Vendedores WHERE Cedula = @Cedula
+END
+GO
+
+-- Actualizar Datos
+CREATE PROCEDURE ActualizarVendedor_SP
+    @IdVendedor BIGINT,
+    @Nombre VARCHAR(100),
+    @Correo VARCHAR(100),
+    @Estado BIT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Vendedores
+    SET Nombre = @Nombre,
+        Correo = @Correo,
+        Estado = @Estado
+    WHERE IdVendedor = @IdVendedor
+END
+GO
+
 -- ========================================================
 -- ======================= VEHICULO =======================
 -- ========================================================
 
 -- Insertar Vehículo
-CREATE PROCEDURE InsertarVehiculo
-    -- Add the parameters for the stored procedure here
+CREATE PROCEDURE InsertarVehiculo_SP
     @Marca VARCHAR(100),
     @Modelo VARCHAR(100),
     @Color VARCHAR(100),
@@ -84,8 +84,7 @@ END
 GO
 
 -- Consultar Vehículos
-CREATE PROCEDURE ConsultarVehiculos
-    -- No parameters required
+CREATE PROCEDURE ConsultarVehiculos_SP
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -101,3 +100,35 @@ BEGIN
 END
 GO
 
+-- Actulizar Datos
+CREATE PROCEDURE ActualizarVehiculo_SP
+    @IdVehiculo BIGINT,
+    @Marca VARCHAR(100),
+    @Modelo VARCHAR(100),
+    @Color VARCHAR(100),
+    @Precio DECIMAL(18,2),
+    @IdVendedor BIGINT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Vehiculos
+    SET Marca = @Marca,
+        Modelo = @Modelo,
+        Color = @Color,
+        Precio = @Precio,
+        IdVendedor = @IdVendedor
+    WHERE IdVehiculo = @IdVehiculo
+END
+GO
+
+-- Eliminar Vehiculo
+CREATE PROCEDURE EliminarVehiculo_SP
+    @IdVehiculo BIGINT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM Vehiculos WHERE IdVehiculo = @IdVehiculo
+END
+GO

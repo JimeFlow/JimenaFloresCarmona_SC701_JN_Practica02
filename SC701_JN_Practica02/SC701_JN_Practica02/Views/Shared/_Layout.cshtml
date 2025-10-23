@@ -25,22 +25,34 @@
         <!-- Navbar Menu -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="index.html">
+                <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
                     <img src="assets/images/logo.svg" alt="logo" class="logo-dark" />
                     <img src="assets/images/logo-light.svg" alt="logo-light" class="logo-light">
                 </a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" asp-controller="Home" asp-action="Index"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center">
-                <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome stellar dashboard!</h5>
+                <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Bienvenido a la Práctica 2 - Administración de Vehículos</h5>
                 <ul class="navbar-nav navbar-nav-right">
                     <form class="search-form d-none d-md-block" action="#">
                         <i class="icon-magnifier"></i>
                         <input type="search" class="form-control" placeholder="Search Here" title="Search here">
                     </form>
+
+                    <!-- Práctica 2 - Menú rápido (mantiene diseño de plantilla) -->
+                    <li class="nav-item d-none d-md-flex align-items-center">
+                        <a class="nav-link" asp-controller="Vendedor" asp-action="Create">Registro de Vendedores</a>
+                    </li>
+                    <li class="nav-item d-none d-md-flex align-items-center">
+                        <a class="nav-link" asp-controller="Vehiculo" asp-action="Create">Registro de Vehículos</a>
+                    </li>
+                    <li class="nav-item d-none d-md-flex align-items-center">
+                        <a class="nav-link" asp-controller="Vehiculo" asp-action="Index">Consulta de Vehículos</a>
+                    </li>
+
                     <li class="nav-item"><a href="#" class="nav-link"><i class="icon-basket-loaded"></i></a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><i class="icon-chart"></i></a></li>
                     <li class="nav-item dropdown">
@@ -113,7 +125,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item navbar-brand-mini-wrapper">
-                        <a class="nav-link navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+                        <a class="nav-link navbar-brand brand-logo-mini" asp-controller="Home" asp-action="Index"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
                     </li>
                     <li class="nav-item nav-profile">
                         <a href="#" class="nav-link">
@@ -131,6 +143,29 @@
                             </div>
                         </a>
                     </li>
+                    <!-- Práctica 2 - Navegación -->
+                    <li class="nav-item nav-category">
+                        <span class="nav-link">Práctica 2</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Vendedor" asp-action="Create">
+                            <span class="menu-title">Registro de Vendedores</span>
+                            <i class="icon-user menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Vehiculo" asp-action="Create">
+                            <span class="menu-title">Registro de Vehículos</span>
+                            <i class="icon-speedometer menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Vehiculo" asp-action="Index">
+                            <span class="menu-title">Consulta de Vehículos</span>
+                            <i class="icon-grid menu-icon"></i>
+                        </a>
+                    </li>
+
                     <li class="nav-item nav-category">
                         <span class="nav-link">Dashboard</span>
                     </li>
@@ -233,14 +268,14 @@
                 <!-- Footer -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 Stellar. All rights reserved. <a href="#"> Terms of use</a><a href="#">Privacy Policy</a>  Distributed by<a href="https://themewagon.com" target="_blank">ThemeWagon</a></span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2025 Practica 2. All rights reserved. <a href="#"> Terms of use</a><a href="#">Privacy Policy</a>  Distributed by<a href="https://themewagon.com" target="_blank">ThemeWagon</a></span>
                         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="icon-heart text-danger"></i></span>
                     </div>
                 </footer>              
             </div>
         </div>
     </div>
-
+           
     @* JS Section *@
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     

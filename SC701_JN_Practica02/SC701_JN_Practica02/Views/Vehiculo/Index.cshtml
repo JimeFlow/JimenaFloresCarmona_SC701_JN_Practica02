@@ -1,0 +1,46 @@
+@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Consulta de Vehículos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Práctica 2: Listado de vehículos -->
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Consulta de Vehículos</h4>
+
+                <div class="table-responsive border rounded p-1">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Cédula</th>
+                                <th>Nombre</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Cedula</td>
+                                    <td>@item.Nombre</td>
+                                    <td>@item.Marca</td>
+                                    <td>@item.Modelo</td>
+                                    <td>@String.Format("{0:C2}", item.Precio)</td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

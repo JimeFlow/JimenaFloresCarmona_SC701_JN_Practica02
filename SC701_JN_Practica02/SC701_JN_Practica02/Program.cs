@@ -3,6 +3,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Register DBContextDapper and repositories
+builder.Services.AddSingleton<SC701_JN_Practica02.Data.DBContextDapper>();
+builder.Services.AddTransient<SC701_JN_Practica02.Data.VendedorRepository>();
+builder.Services.AddTransient<SC701_JN_Practica02.Data.VehiculoRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
